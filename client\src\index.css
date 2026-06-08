@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; }
+  body { @apply bg-surface text-text-primary overflow-hidden h-screen; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  a { @apply text-text-primary no-underline; }
+  a:hover { @apply text-accent; }
+  input, select, textarea {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  input::selection, textarea::selection {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+@layer components {
+  .entity-header { @apply px-4 sm:px-8 py-6 sm:py-10 -mx-4 sm:-mx-8 -mt-6 mb-6 bg-cover bg-center; }
+  .entity-header-content { @apply flex flex-col sm:flex-row items-center sm:items-end gap-4 sm:gap-6 text-center sm:text-left; }
+  .entity-image { @apply w-[120px] h-[120px] sm:w-[200px] sm:h-[200px] rounded flex items-center justify-center text-4xl sm:text-6xl bg-cover bg-center shadow-[0_4px_60px_rgba(0,0,0,0.5)] shrink-0; }
+
+  .form-card {
+    background: linear-gradient(135deg, #111111 0%, #0a0a0a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+  .form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffffff, #555555, #ffffff);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .input-line {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+    padding: 0.75rem 0;
+    color: #fff;
+    font-size: 0.875rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.25s ease;
+  }
+  .input-line:focus {
+    border-bottom-color: #ffffff;
+  }
+  .input-line:hover {
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+  }
+  .input-line::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .input-filled {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-size: 0.875rem;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .input-filled:focus {
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .input-filled:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .input-filled::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+  select.input-filled {
+    cursor: pointer;
+  }
+
+  select.input-filled option {
+    color: #fff;
+    background: #2a2a2a;
+  }
+
+  .btn-primary {
+    background: #ffffff;
+    color: #000000;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .tag-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag-option {
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+  }
+  .tag-option:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+  }
+  .tag-option.active {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #000000;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.75rem;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin { scrollbar-width: thin; scrollbar-color: #555 transparent; }
+  .hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .line-clamp-1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+/* Step transitions */
+.step-enter { opacity: 0; transform: translateX(30px); }
+.step-enter-active { opacity: 1; transform: translateX(0); transition: opacity 0.35s ease, transform 0.35s ease; }
+.step-exit { opacity: 1; transform: translateX(0); }
+.step-exit-active { opacity: 0; transform: translateX(-30px); transition: opacity 0.25s ease, transform 0.25s ease; }
+
+/* Step content wrapper */
+.step-content { animation: slideIn 0.35s ease forwards; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-20px); } }
+
+/* Pulsing dot for active step */
+.step-pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); } 50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); } }
+
+/* Gradient text */
+.gradient-text { background: linear-gradient(135deg, #ffffff, #888888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* Range inputs */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: #444;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+input[type='range']:hover::-webkit-slider-thumb { opacity: 1; }
+input[type='range']::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; }
